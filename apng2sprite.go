@@ -29,13 +29,13 @@ func main2() int {
 	inFile, err := os.Open(*inFilename)
 	defer inFile.Close()
 	if err != nil {
-		fmt.Println(err)
+		fmt.Fprintln(os.Stderr, err)
 		return 1
 	}
 
 	apngDecode, err := apng.DecodeAll(inFile)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Fprintln(os.Stderr, err)
 		return 1
 	}
 
@@ -56,16 +56,23 @@ func main2() int {
 		outFile = os.Stdout
 	}
 	if err != nil {
-		fmt.Println(err)
+		fmt.Fprintln(os.Stderr, err)
 		return 1
 	}
 
 	err = png.Encode(outFile, ssi)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Fprintln(os.Stderr, err)
 		return 1
 	}
 
+	fmt.Printf(
+		"Extracted %d frames at %dx%d to create sprite at %dx%d\n",
+		len(images),
+		ssi.width,
+		ssi.height,
+		ssi.width*len(images),
+		ssi.height)
 	return 0
 }
 
