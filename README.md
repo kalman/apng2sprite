@@ -8,5 +8,5 @@ Useful for Unity and probably other things.
 ```
 
 If you're building from source, requires:
- 1. Go (golang.org)
- 2. [github.com/kettek/apng](https://github.com/kettek/apng) (`go get github.com/kettek/apng`)
+ 1. [Go](https://golang.org)
+ 2. [kettek/apng](https://github.com/kettek/apng) (`go get github.com/kettek/apng`)
